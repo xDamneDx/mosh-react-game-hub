@@ -1,1 +1,3 @@
-# mosh-react-game-hub
+# GameHub
+
+Project from Mosh Hamedani "Ultimate React" course.

@@ -9,7 +9,7 @@ interface FetchResponse<T> {
 
 export default function useData<T>(
   endpoint: string,
-  deps: any[],
+  deps?: any[],
   requestConfig?: AxiosRequestConfig
 ) {
   const [data, setData] = useState<T[]>([]);

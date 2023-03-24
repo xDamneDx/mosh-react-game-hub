@@ -15,8 +15,11 @@ export interface Game {
   metacritic: number;
 }
 
-export default function useGames(selectedGenre: Genre | null) {
-  return useData<Game>("/games", [selectedGenre?.id], {
-    params: { genres: selectedGenre?.id },
+export default function useGames(
+  selectedGenre: Genre | null,
+  selectedPlatform: Platform | null
+) {
+  return useData<Game>("/games", [selectedGenre?.id, selectedPlatform?.id], {
+    params: { genres: selectedGenre?.id, platforms: selectedPlatform?.id },
   });
 }

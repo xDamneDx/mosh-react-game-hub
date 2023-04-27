@@ -1,3 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
+import apiClient from "../services/api-client";
+import { FetchResponse } from "./useData";
 import genres from "../data/genres";
 
 export interface Genre {
@@ -7,5 +10,13 @@ export interface Genre {
 }
 
 export default function useGenres() {
-  return { data: genres, isLoading: false, error: null };
+  return useQuery({
+    queryKey: ["genres"],
+    queryFn: () =>
+      apiClient
+        .get<FetchResponse<Genre>>("/genres")
+        .then((res) => res.data.results),
+    staleTime: 1000 * 60 * 60 * 24, // 24 hours
+    initialData: genres,
+  });
 }
